@@ -22,10 +22,18 @@
 
     <h2>Inicio</h2>
     <ul>
-        <li><a href="/">Inicio</a></li>
+        <li><a href={% url "home" %}>Inicio</a></li>
+
+        {% if request.user.is_authenticated %}
+            <li><a href="/usuario">Cuenta</a></li>
+            <li><a href="/logout">Salir</a></li> 
+        {% else %}
+            <a class= "boton" href="/usuario">Iniciar sesión</a>
+        {% endif %}     
     </ul>
 
-    <a class= "boton" href="/usuario">Iniciar sesión</a>
+    {% block content %}{% endblock %}
+
     
 </body>
 </html>
